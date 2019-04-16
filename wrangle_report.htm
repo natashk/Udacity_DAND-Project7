@@ -1,0 +1,281 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2F5496;
+	font-weight:normal;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri Light",sans-serif;
+	color:#2F5496;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoTitle><span style='background:#F7F7F8'>Wrangle Report</span></span></p>
+
+<h1><span style='background:white'>Gathering data</span></span></h1>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>We were provided with WeRateDogs
+Twitter archive with 2356 rows and 17 columns.</span> I programmatically downloaded
+data containing 2075 of original archived tweets’ image predictions. I also
+used additional data, received using Twitter API, for 1177 of original archived
+tweets. All three datasets I loaded into Pandas DataFrames <b>tweets</b>, <b>img_predictions</b>
+and <b>tweets_info</b> correspondently.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<h1>Assessing data</h1>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>First, I performed <i>visual
+assessment</i> of this data, which helped me to find a few quality and tidiness
+issues.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>In original archive of
+tweets some dog names got extracted as &quot;a&quot;, &quot;an&quot; and
+&quot;the&quot;.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Also, there are 4 columns,
+<b>doggo, floofer, pupper</b> and <b>puppo</b>, representing one variable, dog
+&quot;stage.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Nulls are represented as
+string &quot;None&quot; for columns <b>name, doggo, floofer, pupper</b> and <b>puppo</b>.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>In image predictions dataset
+I noticed inconsistency in dog bread names. Some of them start with capital
+letter and some contain &quot;_&quot;.</span> </span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I didn’t find any issues
+in additional tweeter data after visual assessment.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>After seeing all three
+datasets I noticed that they all represent tweet’s properties, so they should
+not be in separate datasets.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Also, I noticed that
+there are missing records (1177 in image predictions dataset vs 2356 in original
+archive of tweets). Maybe some tweets got deleted from Tweeter server. We can’t
+clean that data.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Then, I performed <i>programmatical
+assessment</i>. I found more data quality issues.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>There are 181 retweet
+related records. We are not interested in retweets, so we don't need records
+with not empty <b>retweeted_status_id</b>. Also, we don't need columns with
+information about retweet: <b>retweeted_status_id, retweeted_status_user_id, retweeted_status_timestamp</b>.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Column <b>timestamp</b> has
+type &quot;string&quot; instead of &quot;datetime&quot;.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Min value for </span><b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F'>rating_denominator</span></b><span style='font-size:12.0pt;
+line-height:107%;font-family:"Helvetica",sans-serif;color:#4F4F4F;background:
+white'> equals 0. That doesn't seem right.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>During visual assessment
+I noticed, that tweet with <b>tweet_id</b> = 666287406224695296 has rating 1/2.
+That doesn't look right. I checked the tweet text and noticed, that it contains
+2 pieces matching pattern “&lt;number&gt;/&lt;number&gt;” and first was picked
+as rating. Although, it seems, that the last piece more likely represents
+rating.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+<h1>Cleaning data</h1>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>First, I created copies
+of DataFrames.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I started with fixing tidiness
+issues.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I combine values from
+columns </span><b><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F'>doggo</span></b><span style='font-size:
+12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;color:#4F4F4F;
+background:white'>, </span><b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Helvetica",sans-serif;color:#4F4F4F'>floofer</span></b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F;background:white'>, </span><b><span style='font-size:12.0pt;
+line-height:107%;font-family:"Helvetica",sans-serif;color:#4F4F4F'>pupper</span></b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F;background:white'> and </span><b><span style='font-size:12.0pt;
+line-height:107%;font-family:"Helvetica",sans-serif;color:#4F4F4F'>puppo</span></b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F;background:white'> in one new column </span><b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F'>stage</span></b><span style='font-size:12.0pt;line-height:107%;
+font-family:"Helvetica",sans-serif;color:#4F4F4F;background:white'> and then
+droped the old ones.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>Then I merge all 3
+tables into one.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I removed all
+information related to retweets.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I converted column </span><b><span
+style='font-size:12.0pt;line-height:107%;font-family:"Helvetica",sans-serif;
+color:#4F4F4F'>timestamp</span></b><span style='font-size:12.0pt;line-height:
+107%;font-family:"Helvetica",sans-serif;color:#4F4F4F;background:white'> to
+datetime type.</span></span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>All strings &quot;None&quot;
+were replaced with np.nan.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I replaced strings
+&quot;a&quot;, &quot;an&quot; and &quot;the&quot; in dog’s name column with np.nan.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I reextracted rating
+from <b>text</b> column as last piece, matching pattern “&lt;number&gt;/&lt;number&gt;”,
+and refilled <b>rating_numerator</b> and <b>rating_denominator </b>columns with
+new values.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>I transformed dog breads
+to lower case and replaced &quot;_&quot; with space.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:107%;font-family:
+"Helvetica",sans-serif;color:#4F4F4F;background:white'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
